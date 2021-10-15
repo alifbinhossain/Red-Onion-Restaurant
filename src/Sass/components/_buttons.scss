@@ -1,0 +1,17 @@
+.btn-signup,
+.btn-search {
+  color: #fff;
+  background-color: $color-pink;
+  border: none;
+}
+
+.btn-signup {
+  font-size: 14px;
+  padding: 4px 20px;
+  border-radius: 25px;
+}
+.btn-search {
+  font-size: 16px;
+  padding: 4px 20px;
+  border-radius: 20px;
+}
