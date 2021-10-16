@@ -13,6 +13,7 @@ import SignUp from "./Pages/Form/SignUp/SignUp";
 import Checkout from "./Pages/Checkout/Checkout.jsx";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import PlaceOrder from "./Pages/PlaceOrder/PlaceOrder.jsx";
+import NotFound from "./Pages/404/404";
 
 function App() {
   useEffect(() => {
@@ -53,6 +54,10 @@ function App() {
               <Form>
                 <SignUp></SignUp>
               </Form>
+            </Route>
+
+            <Route path="*">
+              <NotFound></NotFound>
             </Route>
           </Switch>
 

@@ -12,7 +12,6 @@ const SignUp = () => {
 
   const { firebase } = useAll();
   const { createNewAccountWithEmail, error, getUserInformation } = firebase;
-  const [myError, setMyError] = useState(error);
 
   /* ---------------- COLLECT USER INFORMATION FROM SIGNUP FORM --------------- */
   const getEmail = (e) => {
@@ -33,17 +32,16 @@ const SignUp = () => {
   const handleCreateNewAccount = (e) => {
     e.preventDefault();
     createNewAccountWithEmail(userEmail, userPassword, userName, userAddress);
+
+    console.log(userName, userAddress);
   };
 
   return (
-    <div className="form-sign">
+    <div className="form-sign" data-aos="fade-in">
       <img src={logo} alt="" />
 
-      {myError && (
-        <small className="text-center d-block text-danger mb-3">
-          {" "}
-          {myError}
-        </small>
+      {error && (
+        <small className="text-center d-block text-danger mb-3"> {error}</small>
       )}
 
       <Form onSubmit={handleCreateNewAccount}>

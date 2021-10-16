@@ -51,7 +51,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className="form-sign">
+    <div className="form-sign" data-aos="fade-in">
       <img src={logo} alt="" />
 
       {error && (

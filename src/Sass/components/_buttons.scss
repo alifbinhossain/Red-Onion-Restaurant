@@ -1,7 +1,8 @@
 .btn-signup,
 .btn-signin,
 .btn-search,
-.btn-cart {
+.btn-cart,
+.btn-home {
   color: #fff;
   background-color: $color-pink;
   border: none;
@@ -78,4 +79,11 @@
     font-size: 22px;
     color: $color-pink;
   }
+}
+
+.btn-home {
+  padding: 8px 20px;
+  font-size: 18px;
+  border-radius: 3px;
+  box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
 }

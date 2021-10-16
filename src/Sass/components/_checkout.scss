@@ -4,7 +4,18 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 3rem;
+  position: relative;
 
+  &__alternet {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    img {
+      width: 30rem;
+    }
+  }
   /* -------------------------------- USER FORM ------------------------------- */
   .user-form {
     h2 {
@@ -47,7 +58,7 @@
     &__location {
     }
 
-    &_-time {
+    &__time {
     }
 
     &__food-items {

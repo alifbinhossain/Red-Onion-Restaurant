@@ -8,7 +8,7 @@ import Lunch from "../../Components/Lunch/Lunch";
 
 const Home = () => {
   return (
-    <section className="home">
+    <section className="home" data-aos="fade-in">
       <Banner></Banner>
       <Foods></Foods>
       <CTA></CTA>

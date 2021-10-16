@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import nothingAdded from "../../Images/Image/nothing-added.svg";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router";
 import useAll from "../../hooks/useAll";
@@ -14,7 +15,7 @@ const Checkout = () => {
   const onSubmit = (data) => setUserInfo(data);
 
   const { carts, firebase } = useAll();
-  const { cart } = carts;
+  const { cart, totalItems } = carts;
   const [newCart, setNewCart] = useState(cart);
 
   const { user } = firebase;
@@ -50,149 +51,159 @@ const Checkout = () => {
   };
 
   return (
-    <section className="checkout">
-      {/* -------------------------------------------------------------------------- */
-      /*                                  USER FORM                                 */
-      /* -------------------------------------------------------------------------- */}
-      <div className="user-form">
-        <h2 className="mb-3">Edit Delivery Details</h2>
-        <form className="user-form__form" onSubmit={handleSubmit(onSubmit)}>
-          <div className="user-form__input-group">
-            <input
-              placeholder="your email"
-              defaultValue={user?.email}
-              className="user-form__input"
-              {...register("email", {
-                required: true,
-              })}
-            />
-            {errors?.email && (
-              <small className="error-text">Email is Required</small>
-            )}
+    <section className="checkout" data-aos="fade-up">
+      {totalItems ? (
+        <>
+          {/* -------------------------------------------------------------------------- */
+          /*                                  USER FORM                                 */
+          /* -------------------------------------------------------------------------- */}
+          <div className="user-form">
+            <h2 className="mb-3">Edit Delivery Details</h2>
+            <form className="user-form__form" onSubmit={handleSubmit(onSubmit)}>
+              <div className="user-form__input-group">
+                <input
+                  placeholder="your email"
+                  defaultValue={user?.email}
+                  className="user-form__input"
+                  {...register("email", {
+                    required: true,
+                  })}
+                />
+                {errors?.email && (
+                  <small className="error-text">Email is Required</small>
+                )}
+              </div>
+              <div className="user-form__input-group">
+                <input
+                  placeholder="your name"
+                  defaultValue={user?.displayName}
+                  className="user-form__input"
+                  {...register("name", {
+                    required: true,
+                  })}
+                />
+                {errors?.name && (
+                  <small className="error-text">Name is Required</small>
+                )}
+              </div>
+              <div className="user-form__input-group">
+                <input
+                  placeholder="address"
+                  className="user-form__input"
+                  {...register("address", {
+                    required: true,
+                  })}
+                />
+                {errors?.address && (
+                  <small className="error-text">Address is Required</small>
+                )}
+              </div>
+              <div className="user-form__input-group">
+                <input
+                  placeholder="flat no, floor no"
+                  className="user-form__input"
+                  {...register("floor no,flat no", {
+                    required: false,
+                  })}
+                />
+              </div>
+
+              <input
+                className="btn btn-success w-75"
+                type="submit"
+                value="Save & Continue"
+              />
+            </form>
           </div>
-          <div className="user-form__input-group">
-            <input
-              placeholder="your name"
-              defaultValue={user?.displayName}
-              className="user-form__input"
-              {...register("name", {
-                required: true,
-              })}
-            />
-            {errors?.name && (
-              <small className="error-text">Name is Required</small>
-            )}
-          </div>
-          <div className="user-form__input-group">
-            <input
-              placeholder="address"
-              className="user-form__input"
-              {...register("address", {
-                required: true,
-              })}
-            />
-            {errors?.address && (
-              <small className="error-text">Address is Required</small>
-            )}
-          </div>
-          <div className="user-form__input-group">
-            <input
-              placeholder="flat no, floor no"
-              className="user-form__input"
-              {...register("floor no,flat no", {
-                required: false,
-              })}
-            />
-          </div>
 
-          <input
-            className="btn btn-success w-75"
-            type="submit"
-            value="Save & Continue"
-          />
-        </form>
-      </div>
+          {/* -------------------------------------------------------------------------- */
+          /*                                SHOP DETAILS                                */
+          /* -------------------------------------------------------------------------- */}
 
-      {/* -------------------------------------------------------------------------- */
-      /*                                SHOP DETAILS                                */
-      /* -------------------------------------------------------------------------- */}
-      <div className="shop-details">
-        <h4 className="shop-details__location">
-          From Gulshan Plaza Restaurant
-        </h4>
-        <p className="shop-details__time">Arriving in 30-40 min</p>
-        <p className="shop-details__time">to : {userInfo?.address}</p>
+          <div className="shop-details">
+            <h4 className="shop-details__location">
+              From Gulshan Plaza Restaurant
+            </h4>
+            <p className="shop-details__time">Arriving in 30-40 min</p>
+            <p className="shop-details__time">to : {userInfo?.address}</p>
 
-        {/*----------FOOD ITEM DETAILS---------*/}
-        <ul className="shop-details__food-items">
-          {newCart.length > 0 &&
-            newCart.map((item) => (
-              <li className="shop-details__food-item">
-                <img className=" me-3" src={item.img} alt="" />
-                <p className="shop-details__food-item--details me-auto ">
-                  <span className="food-name">{item.name}</span>
-                  <span className="food-price">
-                    {item.price * item.quantity}$
-                  </span>
-                  <span className="food-delivery">Free Delivery</span>
-                </p>
+            {/*----------FOOD ITEM DETAILS---------*/}
 
-                <div className="shop-details__quantity-box">
-                  <button
-                    className="btn-quantity"
-                    onClick={() => handleQuantity(false, item)}
-                  >
-                    <i class="bi bi-dash-square-fill"></i>
-                  </button>
+            <ul className="shop-details__food-items">
+              {newCart.length > 0 &&
+                newCart.map((item) => (
+                  <li className="shop-details__food-item">
+                    <img className=" me-3" src={item.img} alt="" />
+                    <p className="shop-details__food-item--details me-auto ">
+                      <span className="food-name">{item.name}</span>
+                      <span className="food-price">
+                        {item.price * item.quantity}$
+                      </span>
+                      <span className="food-delivery">Free Delivery</span>
+                    </p>
 
-                  <span>{item.quantity}</span>
+                    <div className="shop-details__quantity-box">
+                      <button
+                        className="btn-quantity"
+                        onClick={() => handleQuantity(false, item)}
+                      >
+                        <i class="bi bi-dash-square-fill"></i>
+                      </button>
 
-                  <button
-                    className="btn-quantity"
-                    onClick={() => handleQuantity(true, item)}
-                  >
-                    <i class="bi bi-plus-square-fill"></i>
-                  </button>
-                </div>
+                      <span>{item.quantity}</span>
+
+                      <button
+                        className="btn-quantity"
+                        onClick={() => handleQuantity(true, item)}
+                      >
+                        <i class="bi bi-plus-square-fill"></i>
+                      </button>
+                    </div>
+                  </li>
+                ))}
+            </ul>
+
+            {/*-------------FOOD PRICING-------------*/}
+
+            <ul className="food-pricing">
+              <li className="food-pricing__subtotal">
+                Sub Total : <span>{subTotal} $</span>
               </li>
-            ))}
-        </ul>
+              <li className="food-pricing__tax">
+                Tax (15%) : <span> {tax} $</span>{" "}
+              </li>
+              <li className="food-pricing__delivery">
+                Delivery : <span> 0 $</span>{" "}
+              </li>
+              <li className="food-pricing__total">
+                {" "}
+                Total : <span>{total} $</span>
+              </li>
+            </ul>
 
-        {/*-------------FOOD PRICING-------------*/}
-
-        <ul className="food-pricing">
-          <li className="food-pricing__subtotal">
-            Sub Total : <span>{subTotal} $</span>
-          </li>
-          <li className="food-pricing__tax">
-            Tax (15%) : <span> {tax} $</span>{" "}
-          </li>
-          <li className="food-pricing__delivery">
-            Delivery : <span> 0 $</span>{" "}
-          </li>
-          <li className="food-pricing__total">
-            {" "}
-            Total : <span>{total} $</span>
-          </li>
-        </ul>
-
-        {totalQuantity ? (
-          <button
-            className="btn btn-success d-block mt-3 w-75"
-            onClick={handleGoToPlaceOrder}
-          >
-            Place Order
-          </button>
-        ) : (
-          <button
-            disabled
-            className="btn btn-success d-block mt-3 w-75"
-            onClick={handleGoToPlaceOrder}
-          >
-            Place Order
-          </button>
-        )}
-      </div>
+            {totalQuantity ? (
+              <button
+                className="btn btn-success d-block mt-3 w-75"
+                onClick={handleGoToPlaceOrder}
+              >
+                Place Order
+              </button>
+            ) : (
+              <button
+                disabled
+                className="btn btn-success d-block mt-3 w-75"
+                onClick={handleGoToPlaceOrder}
+              >
+                Place Order
+              </button>
+            )}
+          </div>
+        </>
+      ) : (
+        <div className="checkout__alternet">
+          <img src={nothingAdded} alt="" />
+        </div>
+      )}
     </section>
   );
 };
