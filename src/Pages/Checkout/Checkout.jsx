@@ -52,6 +52,8 @@ const Checkout = () => {
 
   const handleGoToPlaceOrder = () => {
     history.push("/placeorder");
+    setCart([]);
+    setTotalItems(0);
   };
 
   return (
