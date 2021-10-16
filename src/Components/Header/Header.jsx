@@ -1,23 +1,40 @@
 import React from "react";
 import { Container, Nav, Navbar } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+import useAll from "../../hooks/useAll";
 import logo from "../../Images/ICON/logo2.png";
 
 const Header = () => {
+  const { firebase } = useAll();
+  const { user, logOut } = firebase;
   return (
     <>
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand as={NavLink} to="/home">
             <img src={logo} alt="" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto">
-              <Nav.Link href="#home">
-                <i class="bi bi-cart"></i>
-              </Nav.Link>
-              <Nav.Link href="#link">Login</Nav.Link>
-              <button className="ms-3 btn-signup">Sign Up</button>
+            <Nav className="ms-auto d-flex align-items-center">
+              <i class="bi bi-cart icon-cart"></i>
+              {user ? (
+                <div className="d-flex align-items-center">
+                  <i class="bi bi-person-circle icon-profile ms-4 me-2"></i>
+                  <span className="me-4">{user?.displayName}</span>
+
+                  <button className=" btn-signup" onClick={logOut}>
+                    Log out
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <Nav.Link as={NavLink} to="/form/signin">
+                    Log In
+                  </Nav.Link>
+                  <button className="ms-3 btn-signup">Sign Up</button>
+                </>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

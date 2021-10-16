@@ -1,0 +1,40 @@
+.section-cta {
+  padding: 0 8rem 3rem;
+
+  h2 {
+  }
+
+  .cta-item {
+    &__card {
+      border: none !important;
+    }
+
+    &__body {
+    }
+
+    &__title {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+    }
+
+    &__text {
+    }
+  }
+
+  .icon-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: $color-pink;
+    color: $color-white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+
+    i {
+      font-size: 20px;
+    }
+  }
+}

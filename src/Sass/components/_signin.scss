@@ -1,0 +1,40 @@
+.form-signin {
+  width: 50%;
+
+  img {
+    width: 12rem;
+    display: block;
+    margin: 10px auto 3rem;
+  }
+
+  &__label {
+    color: $color-gray-dark !important;
+  }
+
+  &__input {
+    background-color: $color-gray-light !important;
+  }
+
+  .other-options {
+    text-align: center;
+    position: relative;
+    color: $color-pink;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 38%;
+      border-bottom: 1px solid $color-pink;
+    }
+
+    &::before {
+      left: 0;
+    }
+    &::after {
+      right: 0;
+    }
+  }
+}

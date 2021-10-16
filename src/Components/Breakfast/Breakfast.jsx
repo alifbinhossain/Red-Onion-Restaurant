@@ -1,12 +1,13 @@
 import React from "react";
 import { Card, Col } from "react-bootstrap";
-import useBreakfast from "../../hooks/useBreakfast";
+import useAll from "../../hooks/useAll";
 
 const Breakfast = () => {
-  const breakfast = useBreakfast();
-  console.log(breakfast);
+  const { carts, breakfast } = useAll();
+  const { handleAddToCart } = carts;
+
   return breakfast.map((food) => (
-    <Col className="food-item">
+    <Col className="food-item" data-aos="zoom-in">
       <Card className="p-5 food-item__card">
         <Card.Img className="position-relative" variant="top" src={food.img} />
         <Card.Body className="px-0">
@@ -17,6 +18,11 @@ const Breakfast = () => {
           <Card.Text className="mt-3">
             {food?.description?.slice(0, 80)}..{" "}
           </Card.Text>
+
+          <button className="btn-cart" onClick={() => handleAddToCart(food)}>
+            {" "}
+            <i class="bi bi-cart-plus"></i>
+          </button>
         </Card.Body>
       </Card>
     </Col>

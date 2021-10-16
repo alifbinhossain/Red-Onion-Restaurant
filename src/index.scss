@@ -2,7 +2,7 @@
 @import "./Sass/base/base";
 @import "./Sass/base/typography";
 
-/* -------------------------------- UTLITIES -------------------------------- */
+/* -------------------------------- UTILITIES -------------------------------- */
 @import "./Sass/utilities/variables";
 
 /* ------------------------------- COMPONENTS ------------------------------- */
@@ -11,3 +11,9 @@
 @import "./Sass//components/banner";
 @import "./Sass/components/foods";
 @import "./Sass/components/food";
+@import "./Sass/components/cta";
+@import "./Sass/components/checkout";
+@import "./Sass/components/form";
+@import "./Sass/components/signin";
+@import "./Sass/components/signup";
+@import "./Sass/components/footer";
