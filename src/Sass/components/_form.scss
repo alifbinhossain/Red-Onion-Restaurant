@@ -4,3 +4,10 @@
   align-items: center;
   justify-content: center;
 }
+
+@media (max-width: 668px) {
+  .form {
+    min-height: 70vh;
+    padding: 2rem;
+  }
+}

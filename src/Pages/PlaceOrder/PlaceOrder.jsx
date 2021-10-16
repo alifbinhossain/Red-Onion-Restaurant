@@ -1,10 +1,10 @@
 import React from "react";
-import giffy from "../../Images/Image/giphy.gif";
+import giphy from "../../Images/Image/giphy.gif";
 
 const PlaceOrder = () => {
   return (
     <section className="place-order" data-aos="fade-right">
-      <img src={giffy} alt="" />
+      <img src={giphy} alt="" />
     </section>
   );
 };

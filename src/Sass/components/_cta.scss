@@ -3,7 +3,9 @@
 
   h2 {
   }
-
+  p {
+    width: 50%;
+  }
   .cta-item {
     &__card {
       border: none !important;
@@ -35,6 +37,18 @@
 
     i {
       font-size: 20px;
+    }
+  }
+}
+
+@media (max-width: 668px) {
+  .section-cta {
+    padding: 0 2rem 3rem;
+    p {
+      width: 100%;
+    }
+    .cta-item {
+      margin-bottom: 1rem;
     }
   }
 }

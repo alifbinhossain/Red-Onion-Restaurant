@@ -5,9 +5,9 @@ import useAll from "../../hooks/useAll";
 import logo from "../../Images/ICON/logo2.png";
 
 const Header = () => {
-  const { firebase } = useAll();
+  const { firebase, carts } = useAll();
   const { user, logOut, loading } = firebase;
-  console.log(user);
+  const { totalItems } = carts;
 
   const history = useHistory();
   const goToSignUp = () => {
@@ -24,7 +24,14 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto d-flex align-items-center">
-              <i class="bi bi-cart icon-cart"></i>
+              <button type="button" class="btn-cart-badge position-relative">
+                <i class="bi bi-cart icon-cart"></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                  {totalItems}
+                  <span class="visually-hidden">unread messages</span>
+                </span>
+              </button>
+
               {loading ? null : user ? (
                 <div className="d-flex align-items-center">
                   <i class="bi bi-person-circle icon-profile ms-4 me-2"></i>

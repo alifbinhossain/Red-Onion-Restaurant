@@ -4,18 +4,11 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 3rem;
-  position: relative;
 
-  &__alternet {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    img {
-      width: 30rem;
-    }
+  .btn-media {
+    width: 75%;
   }
+
   /* -------------------------------- USER FORM ------------------------------- */
   .user-form {
     h2 {
@@ -24,8 +17,6 @@
       width: max-content;
       padding-bottom: 5px;
       font-weight: 400;
-    }
-    &__form {
     }
 
     &__input-group {
@@ -55,12 +46,6 @@
 
   /* ------------------------------ SHOP DETAILS ------------------------------ */
   .shop-details {
-    &__location {
-    }
-
-    &__time {
-    }
-
     &__food-items {
       list-style: none;
       margin: 0;
@@ -129,17 +114,43 @@
         border-radius: 3px;
         font-weight: 500;
       }
+    }
+  }
+}
 
-      &__subtotal {
+/* -------------------------------------------------------------------------- */
+/*                                 MEDIA QUERY                                */
+/* -------------------------------------------------------------------------- */
+@media (max-width: 668px) {
+  .checkout {
+    padding: 2rem;
+    grid-template-columns: repeat(1, 1fr);
+
+    .btn-media {
+      width: 100%;
+    }
+
+    .user-form {
+      &__input {
+        width: 100%;
+        border: none;
+      }
+    }
+    .shop-details {
+      &__food-item {
+        width: 100%;
+
+        &--details {
+          .food-price {
+            font-size: 18px;
+          }
+        }
       }
 
-      &__tax {
-      }
-
-      &__delivery {
-      }
-
-      &__total {
+      .food-pricing {
+        & > * {
+          width: 100%;
+        }
       }
     }
   }

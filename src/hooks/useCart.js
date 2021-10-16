@@ -28,8 +28,10 @@ const useCart = () => {
 
   return {
     cart,
+    setCart,
     handleAddToCart,
     totalItems,
+    setTotalItems,
   };
 };
 

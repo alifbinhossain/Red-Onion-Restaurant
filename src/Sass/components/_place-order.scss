@@ -6,6 +6,14 @@
 
   img {
     display: block;
-    margin: 0 auto;
+  }
+}
+
+@media (max-width: 668px) {
+  .place-order {
+    min-height: 50vh;
+    img {
+      width: 75%;
+    }
   }
 }

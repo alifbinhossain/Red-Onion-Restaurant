@@ -29,3 +29,35 @@
     transform: rotate(-30deg);
   }
 }
+
+@media (max-width: 668px) {
+  .food-item {
+    &__card {
+      height: 500px;
+      border: none !important;
+      border-radius: 20px !important;
+      transition: all 0.3s;
+
+      &:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    &__price {
+      font-size: 25px;
+      background-color: $color-pink;
+      color: $color-white;
+      margin: 0 auto;
+      height: 70px;
+      width: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 20%;
+      right: 10%;
+      transform: rotate(-30deg);
+    }
+  }
+}

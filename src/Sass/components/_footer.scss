@@ -50,3 +50,32 @@
     }
   }
 }
+
+@media (max-width: 668px) {
+  .footer {
+    padding: 3rem 2rem 1.5rem;
+
+    &__top {
+      display: block;
+
+      img {
+        width: 12rem;
+      }
+
+      &--item {
+        margin-right: 0;
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    &__bottom {
+      display: block;
+      margin-top: 3rem;
+
+      &--item {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

@@ -33,6 +33,14 @@
   transform: scale(0.98) translateY(3px);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
+
+.btn-cart-badge {
+  height: 30px;
+  width: 30px;
+  border: none;
+  font-size: 14px;
+  background-color: transparent;
+}
 .btn-signin {
   display: inline-block;
   width: 100%;

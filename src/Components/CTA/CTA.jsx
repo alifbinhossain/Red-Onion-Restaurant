@@ -9,7 +9,7 @@ const CTA = () => {
   return (
     <section className="section-cta" data-aos="fade-right">
       <h2>Why you choose us</h2>
-      <p className="w-50">
+      <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui laboriosam
         minus alias necessitatibus, inventore recusandae ipsum vel illo sint ea.
       </p>

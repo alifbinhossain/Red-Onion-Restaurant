@@ -40,3 +40,19 @@
     }
   }
 }
+
+@media (max-width: 668px) {
+  .banner {
+    background-position-x: -200px;
+    background-position-y: -80px;
+
+    &__content {
+      h1 {
+        font-size: 30px;
+      }
+      &--search-box {
+        width: 100%;
+      }
+    }
+  }
+}
