@@ -9,7 +9,7 @@ const useLunch = () => {
   const lunch = [
     {
       id: 1,
-      name: "Bagel & Cream Cheese",
+      name: "Beef Steak",
       img: img1,
       price: 17,
       description:
@@ -18,7 +18,7 @@ const useLunch = () => {
 
     {
       id: 2,
-      name: "Breakfast Sandwich",
+      name: "Glazed Salmon with Peppers",
       img: img2,
       price: 9,
       description:
@@ -26,7 +26,7 @@ const useLunch = () => {
     },
     {
       id: 3,
-      name: "Baked Chicken",
+      name: "Tarragon Rubbed Salmon",
       img: img3,
       price: 12,
       description:
@@ -34,7 +34,7 @@ const useLunch = () => {
     },
     {
       id: 4,
-      name: "Eggs Benedict",
+      name: "Indian Lunch",
       img: img4,
       price: 14,
       description:
@@ -42,7 +42,7 @@ const useLunch = () => {
     },
     {
       id: 5,
-      name: "Toast Croissant Friend Egg",
+      name: "Fried Chicken Bento",
       img: img5,
       price: 26,
       description:
@@ -50,7 +50,7 @@ const useLunch = () => {
     },
     {
       id: 6,
-      name: "Full Breakfast with Egg Toast Brunch",
+      name: "Healthy Meal Plan",
       img: img6,
       price: 18,
       description:

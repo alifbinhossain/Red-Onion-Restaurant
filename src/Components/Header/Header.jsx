@@ -15,8 +15,8 @@ const Header = () => {
   };
 
   return (
-    <>
-      <Navbar bg="light" expand="lg">
+    <header>
+      <Navbar bg="light" expand="lg" fixed="top">
         <Container>
           <Navbar.Brand as={NavLink} to="/home">
             <img src={logo} alt="" />
@@ -55,7 +55,7 @@ const Header = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    </>
+    </header>
   );
 };
 
