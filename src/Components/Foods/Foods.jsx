@@ -62,17 +62,24 @@ const Foods = ({ children }) => {
         </Route>
       </Row>
 
-      <button
-        type="button"
-        class="btn btn-success d-block mx-auto my-5 position-relative"
-        onClick={handleGoToCheckout}
-      >
-        Checkout Your Food
-        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-          {totalItems}
-          <span class="visually-hidden">unread messages</span>
-        </span>
-      </button>
+      {totalItems ? (
+        <button
+          type="button"
+          class="btn btn-success d-block mx-auto my-5 position-relative"
+          onClick={handleGoToCheckout}
+        >
+          Checkout Your Food
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            {totalItems}
+            <span class="visually-hidden">unread messages</span>
+          </span>
+        </button>
+      ) : (
+        <button disabled className="btn btn-success d-block mx-auto my-5">
+          {" "}
+          Checkout Your Food
+        </button>
+      )}
     </section>
   );
 };

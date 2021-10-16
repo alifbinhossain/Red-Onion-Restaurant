@@ -2,6 +2,8 @@ import initAuthentication from "../Firebase/Firbase.init";
 import { useEffect, useState } from "react";
 import {
   getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
   signInWithPopup,
   signInWithEmailAndPassword,
   onAuthStateChanged,
@@ -14,6 +16,8 @@ import {
 initAuthentication();
 const useFirebase = () => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   const auth = getAuth();
 
@@ -28,26 +32,34 @@ const useFirebase = () => {
       } else {
         setUser(null);
       }
+
+      setLoading(false);
     });
 
     return unsubscribe;
   }, []);
 
-  const signInWithEmail = (email, password) => {
-    signInWithEmailAndPassword(auth, email, password)
+  const createNewAccountWithEmail = (email, password, name, address) => {
+    setLoading(true);
+    createUserWithEmailAndPassword(auth, email, password, name, address)
       .then((result) => {
-        // Signed in
         const user = result.user;
+        user.displayName = name;
+        user.address = address;
         setUser(user);
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+  };
+
+  const signInWithEmail = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
   };
 
   const signInWithAny = (provider) => {
-    signInWithPopup(auth, provider).then((result) => {
-      const user = result.user;
-      setUser(user);
-    });
+    setLoading(true);
+    return signInWithPopup(auth, provider);
   };
 
   const logOut = () => {
@@ -57,12 +69,17 @@ const useFirebase = () => {
   };
   return {
     user,
+    loading,
+    setLoading,
+    createNewAccountWithEmail,
+    updateProfile,
     googleProvider,
     facebookProvider,
     twitterProvider,
     signInWithEmail,
     signInWithAny,
     logOut,
+    error,
   };
 };
 

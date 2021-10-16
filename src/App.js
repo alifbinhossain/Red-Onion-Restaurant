@@ -10,7 +10,9 @@ import AllProvider from "./context/AllProvider";
 import Form from "./Pages/Form/Form";
 import SignIn from "./Pages/Form/SignIn/SignIn";
 import SignUp from "./Pages/Form/SignUp/SignUp";
-import Checkout from "./Components/Checkout/Checkout";
+import Checkout from "./Pages/Checkout/Checkout.jsx";
+import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import PlaceOrder from "./Pages/PlaceOrder/PlaceOrder.jsx";
 
 function App() {
   useEffect(() => {
@@ -26,6 +28,7 @@ function App() {
       <AllProvider>
         <Router>
           <Header></Header>
+
           <Switch>
             <Route exact path="/">
               <Home></Home>
@@ -33,9 +36,14 @@ function App() {
             <Route path="/home">
               <Home></Home>
             </Route>
-            <Route path="/checkout">
+
+            <PrivateRoute path="/checkout">
               <Checkout></Checkout>
-            </Route>
+            </PrivateRoute>
+            <PrivateRoute path="/placeorder">
+              <PlaceOrder></PlaceOrder>
+            </PrivateRoute>
+
             <Route exact path="/form/signin">
               <Form>
                 <SignIn></SignIn>
@@ -47,6 +55,7 @@ function App() {
               </Form>
             </Route>
           </Switch>
+
           <Footer></Footer>
         </Router>
       </AllProvider>

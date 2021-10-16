@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router";
 import useAll from "../../hooks/useAll";
 
 const Checkout = () => {
+  const [userInfo, setUserInfo] = useState({});
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => setUserInfo(data);
 
   const { carts, firebase } = useAll();
   const { cart } = carts;
@@ -35,6 +37,17 @@ const Checkout = () => {
   );
   const tax = (subTotal * 0.15).toFixed(1);
   const total = Number(subTotal) + Number(tax);
+
+  /* --------------------------- HANDLE PLACE ORDER --------------------------- */
+  const history = useHistory();
+  const totalQuantity = newCart.reduce(
+    (pre, current) => pre + current.quantity,
+    0
+  );
+
+  const handleGoToPlaceOrder = () => {
+    history.push("/placeorder");
+  };
 
   return (
     <section className="checkout">
@@ -108,6 +121,7 @@ const Checkout = () => {
           From Gulshan Plaza Restaurant
         </h4>
         <p className="shop-details__time">Arriving in 30-40 min</p>
+        <p className="shop-details__time">to : {userInfo?.address}</p>
 
         {/*----------FOOD ITEM DETAILS---------*/}
         <ul className="shop-details__food-items">
@@ -162,9 +176,22 @@ const Checkout = () => {
           </li>
         </ul>
 
-        <button className="btn btn-success d-block mt-3 w-75">
-          Place Order
-        </button>
+        {totalQuantity ? (
+          <button
+            className="btn btn-success d-block mt-3 w-75"
+            onClick={handleGoToPlaceOrder}
+          >
+            Place Order
+          </button>
+        ) : (
+          <button
+            disabled
+            className="btn btn-success d-block mt-3 w-75"
+            onClick={handleGoToPlaceOrder}
+          >
+            Place Order
+          </button>
+        )}
       </div>
     </section>
   );

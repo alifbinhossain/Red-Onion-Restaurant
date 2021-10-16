@@ -1,21 +1,37 @@
 import React, { useState } from "react";
 import { FloatingLabel, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import useAll from "../../../hooks/useAll";
 import logo from "../../../Images/ICON/logo2.png";
 
 const SignIn = () => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [error, setError] = useState("");
 
   const { firebase } = useAll();
   const {
+    setLoading,
     signInWithEmail,
     signInWithAny,
     googleProvider,
     facebookProvider,
     twitterProvider,
   } = firebase;
+
+  const location = useLocation();
+  const history = useHistory();
+
+  const redirectURL = location.state?.from || "/home";
+
+  const handleSignInWithAny = (provider) => {
+    signInWithAny(provider)
+      .then((result) => {
+        history.push(redirectURL);
+      })
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+  };
 
   const emailChange = (e) => {
     setUserEmail(e.target.value);
@@ -26,35 +42,44 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signInWithEmail(userEmail, userPassword);
+    signInWithEmail(userEmail, userPassword)
+      .then((result) => {
+        history.push(redirectURL);
+      })
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
   };
 
   return (
-    <div className="form-signin">
+    <div className="form-sign">
       <img src={logo} alt="" />
+
+      {error && (
+        <small className="text-danger d-block text-center my-3">{error}</small>
+      )}
 
       <Form onSubmit={handleSubmit}>
         <FloatingLabel
           controlId="floatingInput"
           label="Email address"
-          className="mb-3 form-signin__label"
+          className="mb-3 form-sign__label"
         >
           <Form.Control
             type="email"
             placeholder="name@example.com"
-            className="form-signin__input"
+            className="form-sign__input"
             onBlur={emailChange}
           />
         </FloatingLabel>
         <FloatingLabel
           controlId="floatingPassword"
           label="Password"
-          className="form-signin__label"
+          className="form-sign__label"
         >
           <Form.Control
             type="password"
             placeholder="Password"
-            className="form-signin__input"
+            className="form-sign__input"
             onBlur={passwordChange}
           />
         </FloatingLabel>
@@ -72,20 +97,20 @@ const SignIn = () => {
       <div className="btn-box">
         <button
           className="btn-social"
-          onClick={() => signInWithAny(googleProvider)}
+          onClick={() => handleSignInWithAny(googleProvider)}
         >
           {" "}
           <i class="bi bi-google"></i>
         </button>
         <button
           className="btn-social"
-          onClick={() => signInWithAny(facebookProvider)}
+          onClick={() => handleSignInWithAny(facebookProvider)}
         >
           <i class="bi bi-facebook"></i>
         </button>
         <button
           className="btn-social"
-          onClick={() => signInWithAny(twitterProvider)}
+          onClick={() => handleSignInWithAny(twitterProvider)}
         >
           <i class="bi bi-twitter"></i>
         </button>
