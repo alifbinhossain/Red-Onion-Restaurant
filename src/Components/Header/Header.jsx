@@ -14,6 +14,10 @@ const Header = () => {
     history.push("/form/signup");
   };
 
+  const goToCheckOut = () => {
+    history.push("/checkout");
+  };
+
   return (
     <header>
       <Navbar bg="light" expand="lg" fixed="top">
@@ -24,7 +28,11 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto d-flex align-items-center">
-              <button type="button" class="btn-cart-badge position-relative">
+              <button
+                onClick={goToCheckOut}
+                type="button"
+                class="btn-cart-badge position-relative"
+              >
                 <i class="bi bi-cart icon-cart"></i>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
                   {totalItems}
