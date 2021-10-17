@@ -47,11 +47,17 @@
     background-position-y: -80px;
 
     &__content {
+      width: 100%;
+      padding: 3rem;
       h1 {
         font-size: 30px;
       }
       &--search-box {
         width: 100%;
+      }
+
+      &--input-search {
+        width: 30%;
       }
     }
   }
