@@ -1,6 +1,11 @@
 .foods {
   min-height: 100vh;
   padding: 3rem 8rem;
+
+  .bg-pink {
+    background-color: $color-pink;
+  }
+
   &__nav {
     display: flex;
     justify-content: center;

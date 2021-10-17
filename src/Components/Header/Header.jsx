@@ -43,7 +43,7 @@ const Header = () => {
                 </div>
               ) : (
                 <>
-                  <Nav.Link as={NavLink} to="/form/signin">
+                  <Nav.Link className="ms-3" as={NavLink} to="/form/signin">
                     Log In
                   </Nav.Link>
                   <button className="ms-3 btn-signup" onClick={goToSignUp}>
